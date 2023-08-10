@@ -1,16 +1,16 @@
-const os = require("os");
-
-// console.log(os.arch())
-console.log(os.hostname())
-console.log(os.platform())
-console.log(os.type())
+const path = require("path");
 
 
-// const freeMemory = os.freemem();
-// console.log(freeMemory)
-// console.log(`${freeMemory/1024/1024/1024}`)
+console.log(path.dirname("./index.js"))
+console.log(path.basename("./index.js"))
+console.log(path.extname("./index.js"))
 
-// const totalMemory = os.totalmem();
-// console.log(totalMemory);
-// console.log(`${totalMemory/1024/1024/1024}`)
 
+console.log(path.parse("./index.js"))
+
+const myPath = path.parse("./index.js")
+console.log(myPath.name)
+console.log(myPath.root)
+console.log(myPath.dir)
+console.log(myPath.base)
+console.log(myPath.ext)
