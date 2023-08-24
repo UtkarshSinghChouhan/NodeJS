@@ -1,29 +1,35 @@
-const bioData = {
-    name : "Utkarsh",
-    age : 24,
-    status : "unemployed"
-}
 
-// Challenge
-// 1. Convert the above object into the JSON format.
-// 2. Add this JSON data in tot he another file using the NodeJS core FS-module.
-// 3. read that file.
-// 4. now convert the data back to the object.
-// 5. Finally log the data into the console.
 
-const jsonData = JSON.stringify(bioData);
-
+const http = require("http");
 const fs = require("fs");
 
-// fs.writeFile("file.json", jsonData, (err) => err ? console.log(err) : console.log("data added to the file"));
 
-fs.readFile("file.json", "utf-8", (err, data) => {
-    console.log(data)
-    console.log(JSON.parse(data))
+const server = http.createServer((req, res) =>{
+    const data = fs.readFileSync(`${__dirname}/api.json`, "utf-8");
+
+
+    if(req.url == '/'){
+        res.writeHead(200, {"Content-type" : "html"});
+        res.write("<h1>This is the Home Page</h1>")
+        res.end();
+    }else if(req.url === "/api"){
+        res.writeHead(200, {"Content-type" : "application/json"})
+       
+        res.write(data);
+        
+
+        res.end(data)
+        
+    }
+    else{
+        res.writeHead(404, {"Content-type" : "text/html"});
+        res.write("<h1>404 error this page doen not exists</h1>")
+        res.end();
+    }
+    
+
 })
-
-
-// JSON stands for JAvaScript object notation. 
-// JSON is a lightweight format for storing and transporting the data.
-// JSON is often used when data is sent from a server to a web-page.
-
+        //port no., localhost, callback 
+server.listen(8000, "127.0.0.1", () =>{
+    console.log("Listening to the port number 8000... ")
+});
