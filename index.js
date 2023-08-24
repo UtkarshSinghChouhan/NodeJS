@@ -22,3 +22,8 @@ fs.readFile("file.json", "utf-8", (err, data) => {
     console.log(JSON.parse(data))
 })
 
+
+// JSON stands for JAvaScript object notation. 
+// JSON is a lightweight format for storing and transporting the data.
+// JSON is often used when data is sent from a server to a web-page.
+
