@@ -1,22 +1,24 @@
-// A web Server is a software program which serves web pages to the web users (browser).
+const bioData = {
+    name : "Utkarsh",
+    age : 24,
+    status : "unemployed"
+}
 
-// The http.createServer() method includes request and response parameters which is supplied by the Node.js
+// Challenge
+// 1. Convert the above object into the JSON format.
+// 2. Add this JSON data in tot he another file using the NodeJS core FS-module.
+// 3. read that file.
+// 4. now convert the data back to the object.
+// 5. Finally log the data into the console.
 
-// The request object can be used to get information about the current HTTP request.
-// e.g. url, request header, and data
+const jsonData = JSON.stringify(bioData);
 
-// The response object can be used to send response for a current HTTP request.
+const fs = require("fs");
 
-// If the response from the HTTP server is supposed to be displayed as HTML,
-// you should include an HTTP header with the corect content type.
+// fs.writeFile("file.json", jsonData, (err) => err ? console.log(err) : console.log("data added to the file"));
 
-const http = require("http");
-
-
-const server = http.createServer((req, res) =>{
-    res.end("Hello from the other side")
+fs.readFile("file.json", "utf-8", (err, data) => {
+    console.log(data)
+    console.log(JSON.parse(data))
 })
-        //port no., localhost, callback
-server.listen(8000, "127.0.0.1", () =>{
-    console.log("Listening to the port number 8000... ")
-});
+
