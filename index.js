@@ -1,35 +1,43 @@
+// Reading from a Stream
+// Create a Readable Stream
+// Handle Stream events --> data, end, error and finish
 
 
-const http = require("http");
-const fs = require("fs");
+
+// THIS IS THE OLD WAY OF READING THE DATA
+const fs = require("fs")
+const http = require("http")
 
 
-const server = http.createServer((req, res) =>{
-    const data = fs.readFileSync(`${__dirname}/api.json`, "utf-8");
+const server = http.createServer();
+
+server.on("request", (req, res) => {
 
 
-    if(req.url == '/'){
-        res.writeHead(200, {"Content-type" : "html"});
-        res.write("<h1>This is the Home Page</h1>")
+    // THIS IS THE OLD WAY OF READING THE DATA VIA THE SERVER
+
+    // var fs = require("fs");
+    // fs.readFile("./input.txt", (err, data) => err ? console.log(err) : res.end(data));
+
+
+
+    // THIS IS THE NEW WAY OF READING THE DATA VIA THE SERVER THROUGH STREAMING
+
+
+    const rstr = fs.createReadStream("./input.txt")  // First create a readeable stream
+    rstr.on("data", (chunkData) => {
+        res.write(chunkData)
+    })
+
+    rstr.on("end", () => {
         res.end();
-    }else if(req.url === "/api"){
-        res.writeHead(200, {"Content-type" : "application/json"})
-       
-        res.write(data);
-        
+    })
 
-        res.end(data)
-        
-    }
-    else{
-        res.writeHead(404, {"Content-type" : "text/html"});
-        res.write("<h1>404 error this page doen not exists</h1>")
-        res.end();
-    }
-    
-
+    rstr.on("error", (err) => {
+        console.log(err);
+        res.end("File not found");
+    })
 })
-        //port no., localhost, callback 
-server.listen(8000, "127.0.0.1", () =>{
-    console.log("Listening to the port number 8000... ")
-});
+
+server.listen(8000, "127.0.0.1")
+

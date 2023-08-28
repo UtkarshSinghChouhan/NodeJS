@@ -1,0 +1,20 @@
+Hello from the input.txt file.
+This is Utkarsh Singh Chouhan.
+I am learning about the streams in the NodeJS.
+
+Hello from the input.txt file.
+This is Utkarsh Singh Chouhan.
+I am learning about the streams in the NodeJS.
+
+Hello from the input.txt file.
+This is Utkarsh Singh Chouhan.
+I am learning about the streams in the NodeJS.
+
+Hello from the input.txt file.
+This is Utkarsh Singh Chouhan.
+I am learning about the streams in the NodeJS.
+
+Hello from the input.txt file.
+This is Utkarsh Singh Chouhan.
+I am learning about the streams in the NodeJS.
+
